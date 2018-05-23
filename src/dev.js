@@ -8,7 +8,7 @@ import ReactUpload from './main';
 
 class App extends React.Component{
   state = {
-
+    dataURLs:[]
   };
 
   constructor(props){
@@ -19,13 +19,26 @@ class App extends React.Component{
   }
 
   _onChange = e =>{
-    console.log(e.target.value);
+    console.log(e.target);
+    this.setState({
+      dataURLs: e.target.dataURLs
+    })
   };
 
   render(){
+    const { dataURLs } = this.state;
     return (
       <div className="hello-react-upload">
         <ReactUpload ref='rc' onChange={this._onChange} />
+        <div className="pic-list">
+          {
+            dataURLs.map((item, index) => {
+              return (
+                <img key={index} src={item} />
+              )
+            })
+          }
+        </div>
       </div>
     );
   }
