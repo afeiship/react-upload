@@ -6,6 +6,8 @@ import noop from 'noop';
 import objectAssign from 'object-assign';
 import 'next-file-to-base64';
 
+const DEFAULT_ACCEPT = 'image/jpg,image/jpeg,image/png,image/gif';
+
 export default class extends Component{
   /*===properties start===*/
   static propTypes = {
@@ -20,7 +22,7 @@ export default class extends Component{
     name: 'file',
     multiple: true,
     onChange: noop,
-    accept: 'image/jpg,image/jpeg,image/png'
+    accept: DEFAULT_ACCEPT
   };
   /*===properties end===*/
 
