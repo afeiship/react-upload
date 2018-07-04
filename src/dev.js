@@ -29,7 +29,7 @@ class App extends React.Component{
     const { dataURLs } = this.state;
     return (
       <div className="hello-react-upload">
-        <ReactUpload ref='rc' onChange={this._onChange} />
+        <ReactUpload ref='rc' multiple={false} onChange={this._onChange} />
         <div className="pic-list">
           {
             dataURLs.map((item, index) => {
