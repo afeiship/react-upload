@@ -42,7 +42,7 @@ export default class extends Component{
   render(){
     const { className, onChange, ...props } = this.props;
     return (
-      <input type="file" accept="" onChange={this._onChange} {...props}/>
+      <input type="file" onChange={this._onChange} {...props}/>
     );
   }
 }
