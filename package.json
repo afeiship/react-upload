@@ -94,6 +94,7 @@
     "next-file-to-base64": "github:afeiship/next-file-to-base64",
     "noop": "github:afeiship/noop",
     "object-assign": "^4.1.1",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "watermarkjs": "^2.0.0"
   }
 }
