@@ -9,6 +9,7 @@
     name: PropTypes.string,
     watermark: PropTypes.object,
     multiple: PropTypes.bool,
+    itemLimit: PropTypes.number,
     onChange: PropTypes.func,
     accept: PropTypes.string
   };
@@ -16,6 +17,7 @@
   static defaultProps = {
     name: 'file',
     multiple: true,
+    itemLimit: 10,
     onChange: noop,
     accept: DEFAULT_ACCEPT
   };
@@ -69,7 +71,7 @@ class App extends React.Component {
     const { dataURLs } = this.state;
     return (
       <div className="hello-react-upload">
-        <ReactUpload watermark={{
+        <ReactUpload itemLimit={3} watermark={{
           src: require('./logo.png'),
           callback: (canvas, watermark) => {
             const context = canvas.getContext('2d');
