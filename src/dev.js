@@ -29,7 +29,7 @@ class App extends React.Component {
     const { dataURLs } = this.state;
     return (
       <div className="hello-react-upload">
-        <ReactUpload watermark={{
+        <ReactUpload itemLimit={3} watermark={{
           src: require('./logo.png'),
           callback: (canvas, watermark) => {
             const context = canvas.getContext('2d');

@@ -16,6 +16,7 @@ export default class extends Component {
     name: PropTypes.string,
     watermark: PropTypes.object,
     multiple: PropTypes.bool,
+    itemLimit: PropTypes.number,
     onChange: PropTypes.func,
     accept: PropTypes.string
   };
@@ -23,6 +24,7 @@ export default class extends Component {
   static defaultProps = {
     name: 'file',
     multiple: true,
+    itemLimit: 10,
     onChange: noop,
     accept: DEFAULT_ACCEPT
   };
@@ -38,15 +40,16 @@ export default class extends Component {
   }
 
   _onChange = inEvent => {
-    const { onChange, watermark } = this.props;
+    const { itemLimit, onChange, watermark } = this.props;
     const value = inEvent.target.files;
-    const files = nx.slice(value);
+    const files = nx.slice(value, 0, itemLimit);
+
     if (watermark) {
       const apis = files.map(file => this.addWatermark(file));
       return Promise.all(apis).then(response => {
         onChange({
           target: {
-            value,
+            value: files,
             dataURLs: response
           }
         });
@@ -55,7 +58,7 @@ export default class extends Component {
       nx.filesToBase64(value).then(response => {
         onChange({
           target: {
-            value,
+            value: files,
             dataURLs: response
           }
         });
@@ -64,7 +67,7 @@ export default class extends Component {
   };
 
   render() {
-    const { className, onChange, ...props } = this.props;
+    const { className, itemLimit, onChange, ...props } = this.props;
     return (
       <input type="file" onChange={this._onChange} {...props} />
     );
