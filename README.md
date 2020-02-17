@@ -1,104 +1,84 @@
 # react-upload
-> Upload component for react
+> Upload component for react.
 
-## properties:
-```javascript
-
-  static propTypes = {
-    className: PropTypes.string,
-    name: PropTypes.string,
-    watermark: PropTypes.object,
-    multiple: PropTypes.bool,
-    itemLimit: PropTypes.number,
-    onChange: PropTypes.func,
-    accept: PropTypes.string
-  };
-
-  static defaultProps = {
-    name: 'file',
-    multiple: true,
-    itemLimit: 10,
-    onChange: noop,
-    accept: DEFAULT_ACCEPT
-  };
-  
+## installation
+```shell
+npm install -S @feizheng/react-upload
 ```
 
-## install && import:
-```bash
-npm install --save afeiship/react-upload --registry=https://registry.npm.taobao.org
+## update
+```shell
+npm update @feizheng/react-upload
 ```
 
-```js
-import ReactUpload from 'react-upload';
-```
-
-```scss
-// customize your styles:
-$react-upload-options:(
-);
-
-@import 'node_modules/react-upload/dist/style.scss';
-```
+## properties
+| Name      | Type   | Default | Description                           |
+| --------- | ------ | ------- | ------------------------------------- |
+| className | string | -       | The extended className for component. |
+| name      | string | 'file'  | Name for upload.                      |
+| multiple  | bool   | false   | If is multiple.                       |
+| max       | number | 10      | Max size files.                       |
+| onChange  | func   | noop    | The change handler.                   |
+| accept    | string | -       | Accept types.                         |
 
 
-## usage:
-```jsx
+## usage
+1. import css
+  ```scss
+  @import "~@feizheng/react-upload/dist/style.scss";
 
-// install: npm install afeiship/react-upload --save
-// import : import ReactUpload from 'react-upload'
+  // customize your styles:
+  $react-upload-options: ()
+  ```
+2. import js
+  ```js
+  import ReactUpload from '@feizheng/react-upload';
+  import ReactDOM from 'react-dom';
+  import React from 'react';
+  import './assets/style.scss';
 
-class App extends React.Component {
-  state = {
-    dataURLs: []
-  };
+  class App extends React.Component {
+    state = {
+      dataURLs: []
+    };
 
-  constructor(props) {
-    super(props);
-    window.demo = this;
-    window.refs = this.refs;
-    window.rc = this.refs.rc;
-  }
+    handleChange = (e) => {
+      this.setState({
+        dataURLs: e.target.dataURLs
+      });
+    };
 
-  _onChange = e => {
-    console.log(e.target);
-    this.setState({
-      dataURLs: e.target.dataURLs
-    })
-  };
-
-  render() {
-    const { dataURLs } = this.state;
-    return (
-      <div className="hello-react-upload">
-        <ReactUpload itemLimit={3} watermark={{
-          src: require('./logo.png'),
-          callback: (canvas, watermark) => {
-            const context = canvas.getContext('2d');
-            console.log(canvas.width);
-            console.log(canvas.height);
-            // debugger
-            watermark.style.width = watermark.width * 0.6;
-            watermark.style.height = watermark.height * 0.6;
-            context.save();
-            context.globalAlpha = 1;
-            context.drawImage(watermark, 30, 30);
-            context.restore();
-            return canvas;
-          }
-        }} ref='rc' multiple={true} onChange={this._onChange} />
-        <div className="pic-list">
-          {
-            dataURLs.map((item, index) => {
-              return (
-                <img key={index} src={item} />
-              )
-            })
-          }
+    render() {
+      const { dataURLs } = this.state;
+      return (
+        <div className="app-container">
+          <ReactUpload max={3} multiple={true} onChange={this.handleChange} />
+          <div className="pic-list">
+            {dataURLs.map((item, index) => {
+              return <img key={index} src={item} />;
+            })}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
-```
+  ReactDOM.render(<App />, document.getElementById('app'));
+
+  ```
+
+## documentation
+- https://afeiship.github.io/react-upload/
+
+## resources
+- https://www.robinwieruch.de/minimal-react-webpack-babel-setup/
+- https://www.valentinog.com/blog/react-webpack-babel/
+- https://jestjs.io/docs/en/tutorial-react#snapshot-testing-with-mocks-enzyme-and-react-16
+- https://testing-library.com/docs/react-testing-library/api
+
+## todos
+- [ ] Add: semver number for every build files.
+- [ ] Add: need output css files.
+- [ ] Add: PWA support for docs.
+- [ ] Add: source.map file for dist(`you can upload for production debug`).
+- [ ] BUG: npm run dev will clean dist.

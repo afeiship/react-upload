@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#app {
+  height: 100%;
+}
+
+@import "@/components/style.scss";
+
+.app-container {
+  width: 40%;
+  margin: 30px auto;
+  padding: 40px;
+  border: 2px dashed #ccc;
+  input[type="file"] {
+    margin-bottom: 20px;
+  }
+  img {
+    width: 100%;
+  }
+  .button {
+    background: #3cc51f;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 20px;
+    border: none;
+
+    &:active {
+      background: darken(#3cc51f, 10%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

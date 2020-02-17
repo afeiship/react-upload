@@ -1,2 +1,2 @@
-import ReactUpload from 'components/react-upload';
+import ReactUpload from './components';
 export default ReactUpload;
