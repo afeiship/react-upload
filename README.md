@@ -62,7 +62,6 @@ npm install -S @jswork/react-upload
 
     render() {
       const { blobs } = this.state;
-
       return (
         <ReactDemokit
           className="p-3 app-container"
