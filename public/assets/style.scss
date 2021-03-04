@@ -1,42 +1,29 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-html,
-body,
-#app {
-  height: 100%;
-}
-
 @import "@/components/style.scss";
+@import "~@jswork/react-github-corner/dist/style.scss";
+@import "~@jswork/react-sw-update-tips/dist/style.scss";
+@import "~@jswork/react-demokit/dist/style.scss";
 
 .app-container {
-  width: 40%;
-  margin: 30px auto;
-  padding: 40px;
-  border: 2px dashed #ccc;
-  input[type="file"] {
-    margin-bottom: 20px;
-  }
-  img {
-    width: 100%;
-  }
-  .button {
-    background: #3cc51f;
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    color: #fff;
+  .is-body {
     padding: 20px;
-    border: none;
-
-    &:active {
-      background: darken(#3cc51f, 10%);
+    background: #fff;
+    width: 50%;
+    min-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+    input[type="file"] {
+      margin-bottom: 20px;
     }
+  }
 
-    &:focus {
-      outline: none;
+  .pic-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    img {
+      width: 18%;
+      object-fit: cover;
+      margin-bottom: 20px;
     }
   }
 }

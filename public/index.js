@@ -1,30 +1,41 @@
-import ReactUpload from '../src/main';
-import ReactDOM from 'react-dom';
+import ReactDemokit from '@jswork/react-demokit';
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactUpload from '../src/main';
 import './assets/style.scss';
 
 class App extends React.Component {
   state = {
-    dataURLs: []
+    blobs: [
+      'https://randomuser.me/api/portraits/lego/1.jpg',
+      'https://randomuser.me/api/portraits/lego/2.jpg',
+      'https://randomuser.me/api/portraits/lego/3.jpg',
+      'https://randomuser.me/api/portraits/lego/4.jpg',
+      'https://randomuser.me/api/portraits/lego/5.jpg',
+      'https://randomuser.me/api/portraits/lego/6.jpg',
+      'https://randomuser.me/api/portraits/lego/7.jpg'
+    ]
   };
 
   handleChange = (e) => {
     this.setState({
-      dataURLs: e.target.dataURLs
+      blobs: e.target.value.blobs
     });
   };
 
   render() {
-    const { dataURLs } = this.state;
+    const { blobs } = this.state;
     return (
-      <div className="app-container">
-        <ReactUpload max={3} multiple={true} onChange={this.handleChange} />
+      <ReactDemokit
+        className="p-3 app-container"
+        url="https://github.com/afeiship/react-upload">
+        <ReactUpload limit={7} multiple={true} onChange={this.handleChange} />
         <div className="pic-list">
-          {dataURLs.map((item, index) => {
+          {blobs.map((item, index) => {
             return <img key={index} src={item} />;
           })}
         </div>
-      </div>
+      </ReactDemokit>
     );
   }
 }
