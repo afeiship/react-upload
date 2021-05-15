@@ -55,6 +55,7 @@ npm install -S @jswork/react-upload
     };
 
     handleChange = (e) => {
+      console.log('e.value:', e.target.value);
       this.setState({
         blobs: e.target.value.blobs
       });
