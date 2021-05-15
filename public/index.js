@@ -18,6 +18,7 @@ class App extends React.Component {
   };
 
   handleChange = (e) => {
+    console.log('e.value:', e.target.value);
     this.setState({
       blobs: e.target.value.blobs
     });
