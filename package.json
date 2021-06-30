@@ -1,6 +1,6 @@
 {
   "name": "@jswork/react-upload",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Upload component for react.",
   "main": "dist/index.js",
   "scripts": {
