@@ -44,15 +44,15 @@ export default class ReactUpload extends Component {
   };
 
   handleChange = (inEvent) => {
-    const { max, onChange } = this.props;
+    const { limit, onChange } = this.props;
     const value = inEvent.target.files;
-    const files = nx.slice(value, 0, max);
+    const files = nx.slice(value, 0, limit);
     const blobs = files.map((file) => NxObjectUrl.create(file).url);
     onChange({ target: { value: { files, blobs } } });
   };
 
   render() {
-    const { className, max, limit, onChange, ...props } = this.props;
+    const { className, limit, onChange, ...props } = this.props;
     return (
       <input
         data-component={CLASS_NAME}
