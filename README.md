@@ -70,6 +70,7 @@ npm install -S @jswork/react-upload
           <ReactUpload limit={7} multiple={true} onChange={this.handleChange} />
           <div className="pic-list">
             {blobs.map((item, index) => {
+              console.log(item);
               return <img key={index} src={item} />;
             })}
           </div>
