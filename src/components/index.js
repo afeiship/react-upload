@@ -23,13 +23,21 @@ export default class ReactUpload extends Component {
      */
     multiple: PropTypes.bool,
     /**
-     * Max size files.
+     * The max size of the file.
      */
-    limit: PropTypes.number,
+    maxSize: PropTypes.number,
+    /**
+     * Max size files count.
+     */
+    maxCount: PropTypes.number,
     /**
      * The change handler.
      */
     onChange: PropTypes.func,
+    /**
+     * The error handle when validate failed.
+     */
+    onError: PropTypes.func,
     /**
      * Accept types.
      */
@@ -39,24 +47,48 @@ export default class ReactUpload extends Component {
   static defaultProps = {
     name: 'file',
     multiple: false,
-    limit: 10,
-    onChange: noop
+    limit: 1e3,
+    maxSize: 1e10,
+    onChange: noop,
+    onError: noop
+  };
+
+  validate = (inValue) => {
+    const { maxCount, maxSize, onError } = this.props;
+    const len = inValue.length;
+    if (len > maxCount) {
+      const target = { value: 'count' };
+      onError({ target });
+      return false;
+    }
+
+    for (let i = 0; i < len; i++) {
+      const { file } = inValue[i];
+      if (file.size > maxSize) {
+        const target = { value: 'size' };
+        onError({ target });
+        return false;
+      }
+    }
+
+    return true;
   };
 
   handleChange = (inEvent) => {
-    console.log('change?');
-    const { limit, onChange } = this.props;
-    const value = inEvent.target.files;
-    const files = nx.slice(value, 0, limit);
-    const blobs = files.map((file) => NxObjectUrl.create(file).url);
-    onChange({ target: { value: { files, blobs } } });
+    const { onChange } = this.props;
+    const files = nx.slice(inEvent.target.files);
+    const value = files.map((file) => {
+      const blob = NxObjectUrl.create(file).url;
+      return { file, blob };
+    });
 
+    this.validate(value) && onChange({ target: { value } });
     // force trigger change every time
     inEvent.target.value = '';
   };
 
   render() {
-    const { className, limit, onChange, ...props } = this.props;
+    const { className, maxCount, maxSize, onChange, onError, ...props } = this.props;
     return (
       <input
         data-component={CLASS_NAME}
