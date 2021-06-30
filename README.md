@@ -55,7 +55,6 @@ npm install -S @jswork/react-upload
     };
 
     handleChange = (e) => {
-      console.log('e.value:', e.target.value);
       this.setState({
         blobs: e.target.value.blobs
       });
@@ -67,7 +66,7 @@ npm install -S @jswork/react-upload
         <ReactDemokit
           className="p-3 app-container"
           url="https://github.com/afeiship/react-upload">
-          <ReactUpload limit={7} multiple={true} onChange={this.handleChange} />
+          <ReactUpload limit={2} multiple={true} onChange={this.handleChange} />
           <div className="pic-list">
             {blobs.map((item, index) => {
               console.log(item);
