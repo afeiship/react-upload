@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from '@jswork/noop';
-import nxFileToBase64 from '@jswork/next-file-to-base64';
 import NxObjectUrl from '@jswork/next-object-url';
 
 const CLASS_NAME = 'react-upload';
@@ -50,15 +49,7 @@ export default class ReactUpload extends Component {
     const value = inEvent.target.files;
     const files = nx.slice(value, 0, max);
     const blobs = files.map((file) => NxObjectUrl.create(file).url);
-
-    nxFileToBase64(value).then((dataURLs) => {
-      inEvent.target.value = null;
-      onChange({
-        target: {
-          value: { files, blobs, dataURLs }
-        }
-      });
-    });
+    onChange({ target: { value: { files, blobs } } });
   };
 
   render() {

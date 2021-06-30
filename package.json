@@ -80,7 +80,6 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "@jswork/next-file-to-base64": "^1.0.0",
     "@jswork/next-object-url": "^1.0.1",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
