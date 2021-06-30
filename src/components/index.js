@@ -44,7 +44,6 @@ export default class ReactUpload extends Component {
   };
 
   handleChange = (inEvent) => {
-    inEvent.persist();
     const { max, onChange } = this.props;
     const value = inEvent.target.files;
     const files = nx.slice(value, 0, max);
