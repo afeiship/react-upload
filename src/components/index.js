@@ -44,11 +44,15 @@ export default class ReactUpload extends Component {
   };
 
   handleChange = (inEvent) => {
+    console.log('change?');
     const { limit, onChange } = this.props;
     const value = inEvent.target.files;
     const files = nx.slice(value, 0, limit);
     const blobs = files.map((file) => NxObjectUrl.create(file).url);
     onChange({ target: { value: { files, blobs } } });
+
+    // force trigger change every time
+    inEvent.target.value = '';
   };
 
   render() {
