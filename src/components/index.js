@@ -84,7 +84,7 @@ export default class ReactUpload extends Component {
   };
 
   render() {
-    const { className, maxCount, maxSize, onChange, onError, ...props } = this.props;
+    const { type, className, maxCount, maxSize, onChange, onError, ...props } = this.props;
     return (
       <input
         data-component={CLASS_NAME}
