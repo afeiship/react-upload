@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   handleChange = (e) => {
-    const blobs = e.target.value.map((item) => item.blob);
+    const blobs = e.target.value.map((item) => item.url);
     this.setState({ blobs });
   };
 
@@ -40,7 +40,7 @@ class App extends React.Component {
       <ReactDemokit className="p-3 app-container" url="https://github.com/afeiship/react-upload">
         <ReactUpload
           maxCount={10}
-          maxSize={10000}
+          maxSize={1000000}
           multiple={true}
           onChange={this.handleChange}
           onError={this.handleError}
