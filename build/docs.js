@@ -1,7 +1,6 @@
 import {
   inputs,
   outputs,
-
   plugins
 } from '@jswork/webpack-lib-kits';
 import OfflinePlugin from 'offline-plugin';

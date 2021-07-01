@@ -37,18 +37,14 @@ export default class ReactUpload extends Component {
     /**
      * The error handle when validate failed.
      */
-    onError: PropTypes.func,
-    /**
-     * Accept types.
-     */
-    accept: PropTypes.string
+    onError: PropTypes.func
   };
 
   static defaultProps = {
     name: 'file',
     multiple: false,
-    limit: 1e3,
     maxSize: 1e10,
+    maxCount: 1e3,
     onChange: noop,
     onError: noop
   };
